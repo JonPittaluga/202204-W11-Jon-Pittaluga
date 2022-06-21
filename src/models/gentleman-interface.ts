@@ -8,3 +8,8 @@ export interface iGentleman {
   alternativeText: string;
   selected: boolean;
 }
+
+export interface iMenuOptions {
+  path: string;
+  label: string;
+}

@@ -4,12 +4,24 @@ import './App.css';
 import { gentlemenData } from '../../data/data-mock';
 import { Button } from '../button/button';
 import { Info } from '../info/info';
-import { Gentleman } from '../gentleman/gentleman';
 import { List } from '../list/list';
+import { iMenuOptions } from '../../models/gentleman-interface';
+import { Link } from 'react-router-dom';
+import { Router, Routes, Route } from 'react-router-dom';
+import { Home } from '../../pages/home';
+import { Header } from '../header/header';
+import { Layout } from '../layout/layout';
 
 function App() {
   // Static variables
   const title: string = 'The pointing gentlemen';
+
+  const menuOptions: Array<iMenuOptions> = [
+    {
+      label: 'create',
+      path: 'create-gentleman',
+    },
+  ];
 
   // State
   const [gentlemenDataState, setGentlemenData] = useState(gentlemenData);
@@ -45,39 +57,52 @@ function App() {
 
   // Render with conditions
   return (
-    <div className="App container">
-      {
-        // If there're gentlemen
-        gentlemenDataState.length > 0 ? (
-          <>
-            <header className="main-header">
-              <h1 className="main-title">{title}</h1>
-            </header>
-            <section className="controls">
-              <Info number={countSelectedGentlemen.length} />
-              <Button selectAll={selectAll} areAllSelected={areAllSelected} />
-            </section>
-            <main className="main">
-              <List
-                gentlemenData={gentlemenDataState}
-                selectItem={selectItem}
-                deleteItem={deleteItem}
-              />
-            </main>
-          </>
-        ) : (
-          // If there're no gentlemen
-          <div className="no-gentlemen">
-            <h1>Oh-my-gosh!</h1>
-            <h2>
-              There's no gentleman to be shown. <br />
-              Reload the page or become yourself a pointing gentleman. <br />
-              <br />
-              Call ISDI Coders for detailed instructions!
-            </h2>
-          </div>
-        )
-      }
+    <div className="App">
+      <Layout title={title} menuOptions={menuOptions}>
+        {
+          // If there're gentlemen
+          gentlemenDataState.length > 0 ? (
+            <>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <main className="main container">
+                        <section className="controls">
+                          <Info number={countSelectedGentlemen.length} />
+                          <Button
+                            selectAll={selectAll}
+                            areAllSelected={areAllSelected}
+                          />
+                        </section>
+                        <List
+                          gentlemenData={gentlemenDataState}
+                          selectItem={selectItem}
+                          deleteItem={deleteItem}
+                        />
+                      </main>
+                    </>
+                  }
+                ></Route>
+                {/* <Route path="todo" element={<Form />} /> */}
+              </Routes>
+              {/* <Route path="about" element={<About />} /> */}
+            </>
+          ) : (
+            // If there're no gentlemen
+            <div className="no-gentlemen">
+              <h1>Oh-my-gosh!</h1>
+              <h2>
+                There's no gentleman to be shown. <br />
+                Reload the page or become yourself a pointing gentleman. <br />
+                <br />
+                Call ISDI Coders for detailed instructions!
+              </h2>
+            </div>
+          )
+        }
+      </Layout>
     </div>
   );
 }
