@@ -14,7 +14,7 @@ export function Layout({
   return (
     <>
       <Header title={title} menuOptions={menuOptions} />
-      {children}
+      <main className="main-container">{children}</main>
     </>
   );
 }

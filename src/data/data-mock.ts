@@ -1,4 +1,6 @@
-export const gentlemenData: Array<any> = [
+import { iGentleman } from '../models/gentleman-interface';
+
+export const gentlemenData: Array<iGentleman> = [
   {
     id: 1,
     name: 'Bertin Osborne',
@@ -12,7 +14,7 @@ export const gentlemenData: Array<any> = [
   {
     name: 'The Farytale',
     status: 'RIP',
-    profession: 'Influencer',
+    profession: 'Blandengue Hunter',
     twitter: 'pending',
     picture: '/img/fary.jpg',
     alternativeText: 'The Fary pointing at you',
@@ -23,7 +25,7 @@ export const gentlemenData: Array<any> = [
     id: 3,
     name: 'Julius Churchs',
     status: 'Alive',
-    profession: 'Java developer',
+    profession: 'King of Key Biscaine',
     twitter: '@julius_churchs',
     picture: '/img/julio.jpg',
     alternativeText: 'Churchs pointing at you',

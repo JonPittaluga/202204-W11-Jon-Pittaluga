@@ -40,10 +40,12 @@ export function Gentleman({
       <i
         className="icon gentleman__icon fas fa-check"
         onClick={() => selectItem(gentleman.id as number)}
+        title="check-icon"
       ></i>
       <i
         className="icon gentleman__icon gentleman__icon--delete fas fa-times"
         onClick={() => deleteItem(gentleman.id as number)}
+        title="delete-icon"
       ></i>
     </li>
   );
