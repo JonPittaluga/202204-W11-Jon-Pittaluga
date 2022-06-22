@@ -1,18 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
 import './App.css';
-import { gentlemenData } from '../../data/data-mock';
-import { Button } from '../button/button';
+
+import { iGentleman, iMenuOptions } from '../../models/gentleman-interface';
+import { Layout } from '../layout/layout';
 import { Info } from '../info/info';
-import { Gentleman } from '../gentleman/gentleman';
+import { Button } from '../button/button';
 import { List } from '../list/list';
+import { Form } from '../form/form';
+
+// Data from api
+import {
+  apiDeleteGentleman,
+  apiGetGentlemen,
+  apiUpdateGentleman,
+} from '../../services/data-api';
 
 function App() {
   // Static variables
   const title: string = 'The pointing gentlemen';
 
+  const menuOptions: Array<iMenuOptions> = [
+    {
+      label: 'create',
+      path: 'create-gentleman',
+    },
+  ];
+
+  const intialState: Array<iGentleman> = [];
+
   // State
-  const [gentlemenDataState, setGentlemenData] = useState(gentlemenData);
+  const [gentlemenDataState, setGentlemenData] = useState(intialState);
 
   const countSelectedGentlemen = gentlemenDataState.filter(
     (gentleman) => gentleman.selected
@@ -22,6 +42,13 @@ function App() {
     (gentleman) => gentleman.selected
   );
 
+  // Fetch data from the server or the backup static file ../data/data-mock.ts
+  useEffect(() => {
+    apiGetGentlemen().then((data) => {
+      setGentlemenData(data);
+    });
+  }, []);
+
   // Props functions
   const selectAll = (isSelected: boolean): void => {
     setGentlemenData(
@@ -30,54 +57,68 @@ function App() {
   };
 
   const selectItem = (gentlemanId: number): void => {
-    setGentlemenData(
-      gentlemenDataState.map((item) =>
-        item.id === gentlemanId ? { ...item, selected: !item.selected } : item
-      )
-    );
+    apiUpdateGentleman(gentlemenDataState[gentlemanId]).then((resp) => {
+      setGentlemenData(
+        gentlemenDataState.map((item) =>
+          item.id === gentlemanId ? { ...item, selected: !item.selected } : item
+        )
+      );
+    });
   };
 
   const deleteItem = (gentlemanId: number) => {
-    setGentlemenData(
-      gentlemenDataState.filter((item) => item.id !== gentlemanId && item)
-    );
+    apiDeleteGentleman(gentlemanId).then((resp) => {
+      setGentlemenData(
+        gentlemenDataState.filter((item) => item.id !== gentlemanId && item)
+      );
+    });
   };
 
-  // Render with conditions
   return (
-    <div className="App container">
-      {
-        // If there're gentlemen
-        gentlemenDataState.length > 0 ? (
+    <div className="App">
+      <Layout title={title} menuOptions={menuOptions}>
+        {
           <>
-            <header className="main-header">
-              <h1 className="main-title">{title}</h1>
-            </header>
-            <section className="controls">
-              <Info number={countSelectedGentlemen.length} />
-              <Button selectAll={selectAll} areAllSelected={areAllSelected} />
-            </section>
-            <main className="main">
-              <List
-                gentlemenData={gentlemenDataState}
-                selectItem={selectItem}
-                deleteItem={deleteItem}
-              />
-            </main>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  // If there're gentlemen
+                  gentlemenDataState.length > 0 ? (
+                    <>
+                      <main className="main container">
+                        <section className="controls">
+                          <Info count={countSelectedGentlemen.length} />
+                          <Button
+                            selectAll={selectAll}
+                            areAllSelected={areAllSelected}
+                          />
+                        </section>
+                        <List
+                          gentlemenData={gentlemenDataState}
+                          selectItem={selectItem}
+                          deleteItem={deleteItem}
+                        />
+                      </main>
+                    </>
+                  ) : (
+                    // If there're no gentlemen
+                    <div className="no-gentlemen">
+                      <h1>Oh-my-gosh!</h1>
+                      <h2>
+                        There's no gentleman to be shown. <br />
+                        You can create a new gentleman. Click on create and fill
+                        the form.
+                      </h2>
+                    </div>
+                  )
+                }
+              ></Route>
+              <Route path="create-gentleman" element={<Form />} />
+            </Routes>
           </>
-        ) : (
-          // If there're no gentlemen
-          <div className="no-gentlemen">
-            <h1>Oh-my-gosh!</h1>
-            <h2>
-              There's no gentleman to be shown. <br />
-              Reload the page or become yourself a pointing gentleman. <br />
-              <br />
-              Call ISDI Coders for detailed instructions!
-            </h2>
-          </div>
-        )
-      }
+        }
+      </Layout>
     </div>
   );
 }

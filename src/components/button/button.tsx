@@ -9,15 +9,11 @@ export function Button({
 }) {
   return (
     <button
+      role="button"
       className="button button--select"
       onClick={() => selectAll(!areAllSelected)}
     >
       {areAllSelected ? 'Unselect all' : 'Select all'}
     </button>
   );
-  // return (
-  //   <button className="button button--select" onClick={() => selectAll}>
-  //     Select all
-  //   </button>
-  // );
 }

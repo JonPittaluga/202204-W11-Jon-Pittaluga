@@ -26,6 +26,7 @@ body {
   margin: 0;
   color: var(--text-color);
   font-family: 'Open Sans', sans-serif;
+  background-color: var(--background-main-color);
 }
 ul,
 li {
@@ -41,7 +42,6 @@ h2 {
   margin: 0;
 }
 .container {
-  background-color: var(--background-main-color);
   width: 800px;
   margin: 0 auto;
   padding: 20px;

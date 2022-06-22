@@ -1,4 +1,9 @@
-# Week 4 - Challenge 2
+# Week 11 - Challenge - Continuing over the previous one
+
+- We start scaling the program - with TDD (or tests at least)
+  - Add data persistence. Read it from a JSON server
+  - We have tests and test fetch
+  - Add option to create gentleman so we have all CRUD operations implemented
 
 ## Gentlemen pointing at you React
 

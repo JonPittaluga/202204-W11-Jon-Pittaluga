@@ -1,0 +1,34 @@
+{
+  "gentlemen": [
+    {
+      "id": 1,
+      "name": "Bertin Osborne",
+      "status": "Alive",
+      "profession": "Montapleis",
+      "twitter": "@osbourne",
+      "picture": "/img/bertin.jpg",
+      "alternativeText": "Osbourne pointing at you",
+      "selected": false
+    },
+    {
+      "name": "The Farytale",
+      "status": "RIP",
+      "profession": "Blandengue Hunter",
+      "twitter": "pending",
+      "picture": "/img/fary.jpg",
+      "alternativeText": "The Fary pointing at you",
+      "id": 2,
+      "selected": false
+    },
+    {
+      "id": 3,
+      "name": "Julius Churchs",
+      "status": "Alive",
+      "profession": "King of Key Biscaine",
+      "twitter": "@julius_churchs",
+      "picture": "/img/julio.jpg",
+      "alternativeText": "Churchs pointing at you",
+      "selected": false
+    }
+  ]
+}
