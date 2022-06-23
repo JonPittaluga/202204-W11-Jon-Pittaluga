@@ -9,7 +9,7 @@ export const gentlemenData: Array<iGentleman> = [
     twitter: '@osbourne',
     picture: '/img/bertin.jpg',
     alternativeText: 'Osbourne pointing at you',
-    selected: false,
+    isSelected: false,
   },
   {
     name: 'The Farytale',
@@ -19,7 +19,7 @@ export const gentlemenData: Array<iGentleman> = [
     picture: '/img/fary.jpg',
     alternativeText: 'The Fary pointing at you',
     id: 2,
-    selected: false,
+    isSelected: false,
   },
   {
     id: 3,
@@ -29,6 +29,6 @@ export const gentlemenData: Array<iGentleman> = [
     twitter: '@julius_churchs',
     picture: '/img/julio.jpg',
     alternativeText: 'Churchs pointing at you',
-    selected: false,
+    isSelected: false,
   },
 ];

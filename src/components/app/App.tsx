@@ -35,11 +35,13 @@ function App() {
   const [gentlemenDataState, setGentlemenData] = useState(intialState);
 
   const countSelectedGentlemen = gentlemenDataState.filter(
-    (gentleman) => gentleman.selected
+    (gentleman) => gentleman.isSelected
   );
 
+  const countGentlemen: number = gentlemenDataState.length;
+
   const areAllSelected = gentlemenDataState.every(
-    (gentleman) => gentleman.selected
+    (gentleman) => gentleman.isSelected
   );
 
   // Fetch data from the server or the backup static file ../data/data-mock.ts
@@ -52,7 +54,7 @@ function App() {
   // Props functions
   const selectAll = (isSelected: boolean): void => {
     setGentlemenData(
-      gentlemenDataState.map((item) => ({ ...item, selected: isSelected }))
+      gentlemenDataState.map((item) => ({ ...item, isSelected: isSelected }))
     );
   };
 
@@ -60,7 +62,9 @@ function App() {
     apiUpdateGentleman(gentlemenDataState[gentlemanId]).then((resp) => {
       setGentlemenData(
         gentlemenDataState.map((item) =>
-          item.id === gentlemanId ? { ...item, selected: !item.selected } : item
+          item.id === gentlemanId
+            ? { ...item, isSelected: !item.isSelected }
+            : item
         )
       );
     });
@@ -72,6 +76,13 @@ function App() {
         gentlemenDataState.filter((item) => item.id !== gentlemanId && item)
       );
     });
+  };
+  const addGentleman = (gentleman: iGentleman) => {
+    //     apiAddGentleman(gentleman).then((resp) => {
+    //       setGentlemenData(
+    // //        gentlemenDataState.filter((item) => item.id !== gentlemanId && item)
+    //       );
+    //     });
   };
 
   return (
@@ -114,7 +125,10 @@ function App() {
                   )
                 }
               ></Route>
-              <Route path="create-gentleman" element={<Form />} />
+              <Route
+                path="create-gentleman"
+                element={<Form countGentlemen={countGentlemen} />}
+              />
             </Routes>
           </>
         }

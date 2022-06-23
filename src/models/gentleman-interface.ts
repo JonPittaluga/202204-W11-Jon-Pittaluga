@@ -6,7 +6,7 @@ export interface iGentleman {
   twitter: string;
   picture: string;
   alternativeText: string;
-  selected: boolean;
+  isSelected: boolean;
 }
 
 export interface iMenuOptions {

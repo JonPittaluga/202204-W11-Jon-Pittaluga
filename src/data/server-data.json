@@ -4,11 +4,11 @@
       "id": 1,
       "name": "Bertin Osborne",
       "status": "Alive",
-      "profession": "Montapleis",
+      "profession": "Toro de lidia",
       "twitter": "@osbourne",
       "picture": "/img/bertin.jpg",
       "alternativeText": "Osbourne pointing at you",
-      "selected": false
+      "isSelected": false
     },
     {
       "name": "The Farytale",
@@ -18,7 +18,7 @@
       "picture": "/img/fary.jpg",
       "alternativeText": "The Fary pointing at you",
       "id": 2,
-      "selected": false
+      "isSelected": false
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "twitter": "@julius_churchs",
       "picture": "/img/julio.jpg",
       "alternativeText": "Churchs pointing at you",
-      "selected": false
+      "isSelected": false
     }
   ]
 }

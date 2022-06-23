@@ -15,7 +15,7 @@ describe('Given the component Gentleman', () => {
         twitter: '@thetwitteraccount',
         picture: '/img/theroute.jpg',
         alternativeText: 'The alt text',
-        selected: false,
+        isSelected: false,
       };
       const selectItemMock = jest.fn();
       const deleteItemMock = jest.fn();
@@ -43,7 +43,7 @@ describe('Given the component Gentleman', () => {
         twitter: '@thetwitteraccount',
         picture: '/img/theroute.jpg',
         alternativeText: 'The alt text',
-        selected: false,
+        isSelected: false,
       };
       const selectItemMock = jest.fn();
       const deleteItemMock = jest.fn();
@@ -79,7 +79,7 @@ describe('Given the component Gentleman', () => {
         twitter: '@thetwitteraccount',
         picture: '/img/theroute.jpg',
         alternativeText: 'The alt text',
-        selected: false,
+        isSelected: false,
       };
       const selectItemMock = jest.fn();
       const deleteItemMock = jest.fn();
@@ -103,7 +103,7 @@ describe('Given the component Gentleman', () => {
         twitter: '@thetwitteraccount',
         picture: '/img/theroute.jpg',
         alternativeText: 'The alt text',
-        selected: false,
+        isSelected: false,
       };
       const selectItemMock = jest.fn();
       const deleteItemMock = jest.fn();
@@ -136,7 +136,7 @@ describe('Given the component Gentleman', () => {
         twitter: '@thetwitteraccount',
         picture: '/img/theroute.jpg',
         alternativeText: 'The alt text',
-        selected: false,
+        isSelected: false,
       };
       const selectItemMock = jest.fn();
       const deleteItemMock = jest.fn();
@@ -164,7 +164,7 @@ describe('Given the component Gentleman', () => {
         twitter: '@thetwitteraccount',
         picture: '/img/theroute.jpg',
         alternativeText: 'The alt text',
-        selected: true,
+        isSelected: true,
       };
       const selectItemMock = jest.fn();
       const deleteItemMock = jest.fn();

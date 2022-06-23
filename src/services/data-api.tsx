@@ -24,3 +24,11 @@ export function apiDeleteGentleman(id: iGentleman['id']) {
     .then((resp) => resp.json())
     .catch(() => gentlemenData);
 }
+
+export function apiAddGentleman(gentleman: iGentleman) {
+  return fetch(url + `/${gentleman.id}`, {
+    method: 'POST',
+    body: JSON.stringify(gentleman),
+    headers: { 'Content-Type': 'application/json' },
+  }).then((resp) => resp.json());
+}

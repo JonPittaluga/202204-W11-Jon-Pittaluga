@@ -11,7 +11,7 @@ export function Gentleman({
   deleteItem(gentlemanId: number): void;
 }) {
   return (
-    <li className={'gentleman' + (gentleman.selected ? ' selected' : '')}>
+    <li className={'gentleman' + (gentleman.isSelected ? ' selected' : '')}>
       <div className="gentleman__avatar-container">
         <img
           className="gentleman__avatar"
