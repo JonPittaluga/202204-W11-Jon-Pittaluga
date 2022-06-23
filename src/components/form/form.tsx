@@ -10,7 +10,13 @@ import './form.css';
 // - Hacer que funcione correctamente
 // - Entender cómo hacerlo funcionar
 
-export function Form({ countGentlemen }: { countGentlemen: number }) {
+export function Form({
+  handleAddGentleman,
+  countGentlemen,
+}: {
+  handleAddGentleman(gentleman: iGentleman): void;
+  countGentlemen: number;
+}) {
   const initialState: Partial<iGentleman> = {
     name: '',
     picture: '',
@@ -24,7 +30,7 @@ export function Form({ countGentlemen }: { countGentlemen: number }) {
 
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
-    apiAddGentleman({
+    handleAddGentleman({
       // id: countGentlemen + 2,
       name: formState.name as string,
       picture: formState.picture as string,

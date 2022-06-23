@@ -16,6 +16,7 @@ import {
   apiDeleteGentleman,
   apiGetGentlemen,
   apiUpdateGentleman,
+  apiAddGentleman,
 } from '../../services/data-api';
 
 function App() {
@@ -77,12 +78,10 @@ function App() {
       );
     });
   };
-  const addGentleman = (gentleman: iGentleman) => {
-    //     apiAddGentleman(gentleman).then((resp) => {
-    //       setGentlemenData(
-    // //        gentlemenDataState.filter((item) => item.id !== gentlemanId && item)
-    //       );
-    //     });
+  const handleAddGentleman = (gentleman: iGentleman) => {
+    apiAddGentleman(gentleman).then((data) =>
+      setGentlemenData([...gentlemenDataState, data])
+    );
   };
 
   return (
@@ -127,7 +126,12 @@ function App() {
               ></Route>
               <Route
                 path="create-gentleman"
-                element={<Form countGentlemen={countGentlemen} />}
+                element={
+                  <Form
+                    handleAddGentleman={handleAddGentleman}
+                    countGentlemen={countGentlemen}
+                  />
+                }
               />
             </Routes>
           </>
